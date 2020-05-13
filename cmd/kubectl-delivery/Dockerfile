@@ -14,6 +14,6 @@ FROM alpine:3.10
 RUN apk add --no-cache bash
 COPY --from=build /bin/kubectl-delivery /bin/kubectl-delivery
 COPY --from=build /bin/kubectl /bin/kubectl
-RUN mkdir -p /opt/kube/kubectl && cp /bin/kubectl /opt/kube/kubectl
+RUN mkdir -p /opt/kube && cp /bin/kubectl /opt/kube/kubectl && chmod +x /bin/kubectl-delivery
 ENTRYPOINT ["/bin/sh", "-c"]
 CMD ["/bin/kubectl-delivery -alsologtostderr"]
